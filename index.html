@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج تنفيذ استراتيجية تعليمية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- أنماط عامة --- */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f7f6; /* خلفية رمادية فاتحة */
+            direction: rtl;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #ffffff; /* خلفية بيضاء للحاوية */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00796B; /* لون أخضر داكن مائل للزرقة */
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .form-header-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-header-logo img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* --- أنماط النموذج --- */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #4A4A4A;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #00796B;
+        }
+        
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            background-color: #fdfdfd;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .checkbox-group input {
+            margin-left: 8px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 25px;
+            border: none;
+            background: #00796B; /* لون الزر الرئيسي */
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background: #00695C; /* لون أغمق عند التمرير */
+        }
+
+        #printButton {
+            background: #0288D1; /* لون زر الطباعة */
+        }
+        #printButton:hover {
+            background: #0277BD;
+        }
+
+        /* --- أنماط التقرير الناتج --- */
+        .report-output {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .report-header img {
+            height: 80px;
+        }
+
+        .report-header h2 {
+            font-size: 18px;
+            margin: 4px 0;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .report-title {
+            background-color: #00796B; /* لون عنوان التقرير */
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .report-body {
+            padding: 10px 0;
+        }
+
+        .report-block {
+            border: 1px solid #dcdcdc;
+            border-top: 4px solid #FFC107; /* لون الشريط العلوي للمربع */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .block-title {
+            background-color: #4A4A4A; /* لون عنوان المربع */
+            color: white;
+            padding: 12px 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .block-content {
+            padding: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 10px 5px;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: #333;
+            flex-basis: 30%;
+        }
+
+        .info-value {
+            flex-basis: 70%;
+            color: #555;
+        }
+
+        .block-content ul {
+            list-style-type: none;
+            padding-right: 0;
+            margin: 0;
+        }
+
+        .block-content li {
+            padding: 8px 5px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .block-content li:last-child {
+            border-bottom: none;
+        }
+
+        .report-images {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .evidence-image-container {
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .evidence-image-container p {
+            margin-bottom: 8px;
+        }
+
+        .evidence-image-container img {
+            max-width: 250px;
+            max-height: 250px;
+            border: 4px solid #eee;
+            border-radius: 8px;
+            padding: 4px;
+            background-color: #fff;
+        }
+
+        .report-footer {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .signature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signature strong {
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        /* --- تذييل الصفحة --- */
+        .page-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+        }
+
+        .page-footer p {
+            margin: 5px 0;
+        }
+
+        .page-footer a {
+            color: #00796B;
+            text-decoration: none;
+        }
+
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- أنماط الطباعة --- */
+        @media print {
+            body {
+                background: #fff;
+                margin: 0;
+                padding: 0;
+                font-size: 10pt;
+                line-height: 1.4;
+            }
+
+            #strategyForm, #printButton, .container > h1, .page-footer, .form-header-logo {
+                display: none;
+            }
+
+            .container, .report-output {
+                display: block !important;
+                width: 100%;
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .report-output {
+                padding: 1cm;
+                box-sizing: border-box;
+            }
+
+            .report-header { margin-bottom: 10px; padding-bottom: 10px; }
+            .report-header img { height: 50px; }
+            .report-header h2 { font-size: 12pt; margin: 2px 0; }
+
+            .report-title {
+                font-size: 16pt;
+                padding: 8px;
+                margin: 10px 0;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            .report-block {
+                margin-bottom: 8px;
+                page-break-inside: avoid;
+                border-top-width: 3px;
+            }
+
+            .block-title {
+                font-size: 12pt;
+                padding: 6px 10px;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            .block-content { padding: 8px 12px; }
+            .info-row { padding: 4px 0; }
+            .info-label, .info-value { font-size: 10pt; }
+            .block-content li { padding: 3px 5px; font-size: 10pt; }
+
+            .report-images { padding: 5px; gap: 10px; }
+            .evidence-image-container img {
+                max-width: 180px;
+                max-height: 140px;
+            }
+
+            .report-footer { margin-top: 20px; padding-top: 15px; }
+            .signature strong { font-size: 11pt; margin-bottom: 25px; }
+            .signature p { font-size: 10pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header-logo">
+            <img src="https://a.top4top.io/p_3477iie6v1.jpg" alt="شعار النموذج">
+        </div>
+        <h1>نموذج تنفيذ استراتيجية تعليمية</h1>
+        <form id="strategyForm">
+            <div class="form-group">
+                <label for="educationDepartment">إدارة التعليم, المنطقة, مكتب التعليم</label>
+                <input type="text" id="educationDepartment" name="educationDepartment" required>
+            </div>
+            <div class="form-group">
+                <label for="schoolName">اسم المدرسة</label>
+                <input type="text" id="schoolName" name="schoolName" required>
+            </div>
+            <div class="form-group">
+                <label for="implementationDate">تاريخ التنفيذ</label>
+                <input type="date" id="implementationDate" name="implementationDate" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">المادة</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="learningStrategy">استراتيجية التعليم</label>
+                <input type="text" id="learningStrategy" name="learningStrategy" required>
+            </div>
+            <div class="form-group">
+                <label for="beneficiaries">عدد المستفيدين</label>
+                <input type="number" id="beneficiaries" name="beneficiaries" required>
+            </div>
+            <div class="form-group">
+                <label for="educationalStage">المرحلة الدراسية</label>
+                <input type="text" id="educationalStage" name="educationalStage" required>
+            </div>
+            <div class="form-group">
+                <label for="class">الفصل</label>
+                <input type="text" id="class" name="class" required>
+            </div>
+            <div class="form-group">
+                <label for="lessonName">اسم الدرس</label>
+                <input type="text" id="lessonName" name="lessonName" required>
+            </div>
+            <div class="form-group">
+                <label>الأهداف</label>
+                <input type="text" name="objectives[]" placeholder="الهدف 1">
+                <input type="text" name="objectives[]" placeholder="الهدف 2">
+                <input type="text" name="objectives[]" placeholder="الهدف 3">
+                <input type="text" name="objectives[]" placeholder="الهدف 4">
+                <input type="text" name="objectives[]" placeholder="الهدف 5">
+            </div>
+            <div class="form-group">
+                <label>الوسائل التعليمية المستخدمة</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="aids" value="projector"> جهاز عرض</label>
+                    <label><input type="checkbox" name="aids" value="computer"> جهاز حاسب</label>
+                    <label><input type="checkbox" name="aids" value="image"> صورة توضيحية</label>
+                    <label><input type="checkbox" name="aids" value="sports"> أدوات رياضية</label>
+                    <label><input type="checkbox" name="aids" value="book"> كتاب</label>
+                    <label><input type="checkbox" name="aids" value="board"> سبورة تقليدية</label>
+                    <label><input type="checkbox" name="aids" value="smartboard"> سبورة ذكية</label>
+                    <label><input type="checkbox" name="aids" value="cards"> بطاقات تعليمية</label>
+                    <label><input type="checkbox" name="aids" value="worksheets"> أوراق عمل</label>
+                    <label><input type="checkbox" name="aids" value="presentation"> عرض تقديمي</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="teacherName">اسم المعلم</label>
+                <input type="text" id="teacherName" name="teacherName" required>
+            </div>
+            <div class="form-group">
+                <label for="principalName">اسم مدير المدرسة</label>
+                <input type="text" id="principalName" name="principalName" required>
+            </div>
+            <div class="form-group">
+                <label for="twitterAccount">أحد حسابات المعلم على الانترنت</label>
+                <input type="text" id="twitterAccount" name="twitterAccount">
+            </div>
+            <div class="form-group">
+                <label>صور الشواهد</label>
+                <input type="file" name="evidence1" accept="image/*">
+                <input type="file" name="evidence2" accept="image/*">
+            </div>
+            <div class="form-group">
+                <button type="submit">إنشاء النموذج</button>
+            </div>
+        </form>
+    </div>
+    <div id="reportOutput" class="report-output"></div>
+    <footer class="page-footer">
+        <p>مصمم التقرير</p>
+        <p>الأستاذ علي الهلال</p>
+        <p><a href="https://linktr.ee/aliabdullahalhelal" target="_blank">حساباتي على الانترنت</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('strategyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const reportOutput = document.getElementById('reportOutput');
+            const container = document.querySelector('.container');
+
+            // --- إعداد ---
+            reportOutput.innerHTML = '';
+            const existingButton = document.getElementById('printButton');
+            if (existingButton) existingButton.remove();
+
+            // --- رأس التقرير ---
+            reportOutput.innerHTML += `
+                <div class="report-header">
+                    <img src="https://b.top4top.io/p_3477bwdtj1.jpg" alt="Logo">
+                    <h2>المملكة العربية السعودية</h2>
+                    <h2>وزارة التعليم</h2>
+                </div>
+                <div class="report-title">نموذج تنفيذ استراتيجية تدريس</div>
+            `;
+
+            const reportBody = document.createElement('div');
+            reportBody.className = 'report-body';
+
+            // --- دالة لإنشاء مربع محتوى ---
+            function createBlock(title, content) {
+                const block = document.createElement('div');
+                block.className = 'report-block';
+                block.innerHTML = `
+                    <div class="block-title">${title}</div>
+                    <div class="block-content">${content}</div>
+                `;
+                return block;
+            }
+
+            // --- مربع البيانات الأساسية ---
+            let infoContent = '';
+            const infoFields = [
+                { label: 'إدارة التعليم', key: 'educationDepartment' },
+                { label: 'اسم المدرسة', key: 'schoolName' },
+                { label: 'تاريخ التنفيذ', key: 'implementationDate' },
+                { label: 'المادة', key: 'subject' },
+                { label: 'استراتيجية التعليم', key: 'learningStrategy' },
+                { label: 'عدد المستفيدين', key: 'beneficiaries' },
+                { label: 'المرحلة الدراسية', key: 'educationalStage' },
+                { label: 'الفصل', key: 'class' },
+                { label: 'اسم الدرس', key: 'lessonName' },
+            ];
+            infoFields.forEach(field => {
+                infoContent += `<div class="info-row"><span class="info-label">${field.label}:</span><span class="info-value">${formData.get(field.key) || '-'}</span></div>`;
+            });
+            reportBody.appendChild(createBlock('البيانات الأساسية', infoContent));
+
+            // --- مربع الأهداف ---
+            const objectives = formData.getAll('objectives[]').filter(o => o.trim() !== '');
+            if (objectives.length > 0) {
+                const list = `<ul>${objectives.map(o => `<li>${o}</li>`).join('')}</ul>`;
+                reportBody.appendChild(createBlock('الأهداف', list));
+            }
+
+            // --- مربع الوسائل التعليمية ---
+            const aids = formData.getAll('aids');
+            if (aids.length > 0) {
+                const aidLabels = aids.map(aid => form.querySelector(`input[value="${aid}"]`).parentElement.innerText.trim());
+                const list = `<ul>${aidLabels.map(a => `<li>${a}</li>`).join('')}</ul>`;
+                reportBody.appendChild(createBlock('الوسائل التعليمية المستخدمة', list));
+            }
+
+            // --- مربع صور الشواهد ---
+            const evidence1 = formData.get('evidence1');
+            const evidence2 = formData.get('evidence2');
+            if (evidence1.size > 0 || evidence2.size > 0) {
+                let imagesHTML = '<div class="report-images">';
+                if (evidence1.size > 0) {
+                    imagesHTML += `<div class="evidence-image-container"><p>الشاهد الأول</p><img src="${URL.createObjectURL(evidence1)}"></div>`;
+                }
+                if (evidence2.size > 0) {
+                    imagesHTML += `<div class="evidence-image-container"><p>الشاهد الثاني</p><img src="${URL.createObjectURL(evidence2)}"></div>`;
+                }
+                imagesHTML += '</div>';
+                reportBody.appendChild(createBlock('صور الشواهد', imagesHTML));
+            }
+
+            reportOutput.appendChild(reportBody);
+
+            // --- تذييل التقرير (التواقيع) ---
+            reportOutput.innerHTML += `
+                <div class="report-footer">
+                    <div class="signature"><strong>المعلم</strong><p>${formData.get('teacherName')}</p></div>
+                    <div class="signature"><strong>مدير المدرسة</strong><p>${formData.get('principalName')}</p></div>
+                </div>
+            `;
+
+            // --- الإجراءات النهائية ---
+            form.style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.form-header-logo').style.display = 'none';
+            reportOutput.style.display = 'block';
+
+            const printButton = document.createElement('button');
+            printButton.textContent = 'طباعة التقرير';
+            printButton.id = 'printButton';
+            printButton.onclick = () => window.print();
+            container.appendChild(printButton);
+        });
+    </script>
+</body>
+</html>
